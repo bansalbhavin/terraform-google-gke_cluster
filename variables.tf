@@ -53,10 +53,16 @@ variable "istio_ip_names" {
   default     = []
 }
 
-variable "istioctl_firewall_name" {
-  description = "An arbitrary name to identify the IstioCtl firewall that will be generated for the GKE cluster if \"var.istio_ip_names\" contains any values."
+variable "firewall_name" {
+  description = "An arbitrary name to identify the firewall that will be generated for the GKE cluster if \"var.istio_ip_names\" or \"var.firewall_ingress_ports\" contains any values."
   type        = string
-  default     = "allow-istioctl"
+  default     = "allow-ingress"
+}
+
+variable "firewall_ingress_ports" {
+  description = "Additional ports (on cluster nodes) that should be allowed via firewall rules to receive incoming traffic."
+  type        = list(string)
+  default     = []
 }
 
 variable "sa_name" {
